@@ -1,0 +1,240 @@
+.nav-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(90%, 980px);
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(16, 24, 40, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.3);
+  position: relative;
+}
+
+/* Left side: menu button + logo */
+.nav-filter__left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-filter__menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: rgba(244, 244, 245, 0.9);
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  position: relative;
+  z-index: 300; /* ensure button sits above overlays */
+}
+
+.nav-filter__menu-button:hover,
+.nav-filter__menu-button:focus-visible {
+  background: rgba(237, 242, 247, 0.95);
+  border-color: rgba(59, 130, 246, 0.2);
+  outline: none;
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
+}
+
+.nav-filter__menu-button:active {
+  transform: scale(0.96);
+}
+
+.nav-filter__menu-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-filter__logo {
+  width: 150px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Nav list (hidden by default for mobile) */
+.nav-filter__list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.nav-filter__list--open {
+  display: flex;
+}
+
+.nav-filter__item {
+  margin: 0;
+}
+
+.nav-filter__link {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.nav-filter__link:hover,
+.nav-filter__link:focus-visible {
+  color: hsl(26, 100%, 55%);
+}
+
+/* Actions: cart, avatar, etc. */
+.nav-filter__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-filter__action-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-filter__cart {
+  position: relative;
+}
+
+.nav-filter__cart-button {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-filter__cart-button:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.25);
+}
+
+.nav-filter__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Backdrop hidden by default (only used on mobile) */
+.nav-filter__backdrop {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  /* Mobile menu slide-in */
+  .nav-filter__list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60; /* above backdrop */
+    width: 70vw;
+    max-width: 420px;
+    height: 100vh;
+    padding: 2rem 1.25rem;
+    padding-top: 7rem;
+    padding-left: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    background: white;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 12px 0 32px rgba(15, 23, 42, 0.18);
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 220ms ease,
+      opacity 220ms ease;
+  }
+
+  .nav-filter__list--open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Backdrop for mobile menu */
+  .nav-filter__backdrop--open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 50; /* below menu */
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .nav-filter__backdrop--open {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-filter {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.75rem;
+  }
+
+  .nav-filter__logo {
+    width: 88px;
+  }
+
+  .nav-filter__actions {
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop: show inline nav, hide mobile controls */
+  .nav-filter__menu-button {
+    display: none;
+  }
+
+  .nav-filter__list {
+    position: static;
+    width: auto;
+    max-width: none;
+    height: auto;
+    padding: 0;
+    padding-top: 0;
+    padding-left: 0;
+    margin-left: 3rem;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    transition: none;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .nav-filter__link {
+    font-size: 0.8rem;
+  }
+
+  .nav-filter__actions {
+    gap: 3rem;
+  }
+
+  .nav-filter__left {
+    align-items: center;
+  }
+}
