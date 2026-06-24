@@ -7,9 +7,8 @@ import cart from "../assets/icon-cart.svg";
 import avatar from "../assets/image-avatar.png";
 import Cart from "./Cart.jsx";
 
-function Nav() {
+function Nav({ cartCount, cartOpen, onToggleCart, cartItems, onRemoveItem }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
 
   return (
@@ -55,15 +54,18 @@ function Nav() {
             type="button"
             className="nav-filter__cart-button"
             aria-label="Toggle cart"
-            onClick={() => setIsCartOpen((p) => !p)}
+            onClick={onToggleCart}
           >
             <img
               className="nav-filter__action-icon"
               src={cart}
               alt="Cart Icon"
             />
+            {cartCount > 0 && (
+              <span className="nav-filter__cart-count">{cartCount}</span>
+            )}
           </button>
-          <Cart open={isCartOpen} />
+          <Cart open={cartOpen} items={cartItems} onRemoveItem={onRemoveItem} />
         </div>
 
         <img className="nav-filter__avatar" src={avatar} alt="Avatar" />

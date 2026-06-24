@@ -1,0 +1,236 @@
+/* Description Component - Mobile First */
+
+.description {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header - Brand and Title */
+.description__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.description__brand {
+  color: hsl(26, 100%, 55%);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.description__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: hsl(220, 13%, 13%);
+  margin: 0;
+}
+
+/* Description Text */
+.description__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: hsl(219, 9%, 45%);
+  margin: 0;
+}
+
+/* Rating */
+.description__rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.description__stars {
+  font-size: 1.1rem;
+  color: hsl(26, 100%, 55%);
+  letter-spacing: 2px;
+}
+
+.description__review-count {
+  font-size: 0.875rem;
+  color: hsl(219, 9%, 45%);
+  border-left: 1px solid hsl(220, 13%, 91%);
+  padding-left: 1rem;
+}
+
+/* Pricing */
+.description__pricing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.description__price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.description__current-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: hsl(220, 13%, 13%);
+}
+
+.description__discount {
+  background: hsl(25, 100%, 94%);
+  color: hsl(26, 100%, 55%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.description__original-price {
+  font-size: 0.875rem;
+  color: hsl(220, 14%, 75%);
+  text-decoration: line-through;
+  order: 3;
+  width: 100%;
+}
+
+/* Actions - Quantity and Add to Cart */
+.description__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.description__quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  background: hsl(223, 64%, 98%);
+  border-radius: 8px;
+  padding: 0.75rem;
+  width: 100%;
+}
+
+.description__quantity-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 200ms ease;
+}
+
+.description__quantity-button:hover {
+  opacity: 0.6;
+}
+
+.description__quantity-button img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+}
+
+.description__quantity {
+  font-size: 1rem;
+  font-weight: 700;
+  color: hsl(220, 13%, 13%);
+  flex: 1;
+  text-align: center;
+}
+
+.description__add-to-cart {
+  width: 100%;
+  padding: 1rem;
+  background: hsl(26, 100%, 55%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition:
+    background 200ms ease,
+    opacity 200ms ease;
+}
+
+.description__add-to-cart:hover,
+.description__add-to-cart:focus-visible {
+  background: hsl(26, 100%, 62%);
+  outline: none;
+}
+
+.description__add-to-cart img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+/* Tablet and Desktop */
+@media (min-width: 768px) {
+  .description {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .description__title {
+    font-size: 2rem;
+  }
+
+  .description__text {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .description__pricing {
+    flex-wrap: wrap;
+  }
+
+  .description__original-price {
+    order: 3;
+  }
+
+  .description__actions {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .description__quantity-selector {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 130px;
+  }
+
+  .description__add-to-cart {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .description {
+    padding: 2.5rem;
+    gap: 2.5rem;
+    max-width: 520px;
+  }
+
+  .description__title {
+    font-size: 2.25rem;
+  }
+
+  .description__text {
+    font-size: 1rem;
+  }
+
+  .description__current-price {
+    font-size: 2rem;
+  }
+}

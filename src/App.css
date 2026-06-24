@@ -15,6 +15,13 @@
   font-size: 1.6rem;
 }
 
+.app__product-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0;
+}
+
 @media (min-width: 640px) {
   .app {
     padding: 1.25rem;
@@ -25,5 +32,12 @@
   .app {
     padding: 1.75rem 2rem;
     align-items: center;
+  }
+
+  .app__product-container {
+    flex-direction: row;
+    gap: 3rem;
+    max-width: 1080px;
+    width: 100%;
   }
 }
