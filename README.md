@@ -312,8 +312,8 @@ Areas to improve in future projects:
 
 ## Author
 
-- Frontend Mentor — [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- GitHub — [@yourusername](https://github.com/yourusername)
+
+- GitHub — [@yourusername](https://github.com/olamilekan-oluwayomi)
 
 ---
 
