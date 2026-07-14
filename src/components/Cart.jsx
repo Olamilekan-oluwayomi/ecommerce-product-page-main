@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "./Cart.css";
 import thumbnail from "../assets/image-product-1-thumbnail.jpg";
 import deleteIcon from "../assets/icon-delete.svg";
@@ -7,9 +8,32 @@ export default function Cart() {
   const isCartOpen = useCartStore((state) => state.isCartOpen);
   const cartItems = useCartStore((state) => state.cartItems);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const toggleCart = useCartStore((state) => state.toggleCart);
+  const cartRef = useRef(null);
+
+  useEffect(() => {
+    if (!isCartOpen) return;
+
+    function handleClickOutside(event) {
+      const clickedToggleButton = event.target.closest(
+        ".nav-filter__cart-button",
+      );
+      if (
+        cartRef.current &&
+        !cartRef.current.contains(event.target) &&
+        !clickedToggleButton
+      ) {
+        toggleCart();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isCartOpen, toggleCart]);
 
   return (
     <div
+      ref={cartRef}
       className={`cart-popover ${isCartOpen ? "cart-popover--open" : ""}`}
       role="dialog"
       aria-hidden={!isCartOpen}
