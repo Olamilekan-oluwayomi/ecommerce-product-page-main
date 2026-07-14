@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import Nav from "./components/Nav.jsx";
 import Gallery from "./components/Gallery.jsx";
@@ -17,55 +16,12 @@ const product = {
 };
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const discountedPrice =
-    product.originalPrice * (1 - product.discountPercent / 100);
-
-  const handleAddToCart = (quantity) => {
-    setCartItems((currentItems) => {
-      const existingItem = currentItems.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        return currentItems.map((item) =>
-          item.id === product.id ? { ...item, quantity } : item,
-        );
-      }
-
-      return [
-        ...currentItems,
-        {
-          id: product.id,
-          name: product.title,
-          unitPrice: discountedPrice,
-          quantity,
-        },
-      ];
-    });
-    setIsCartOpen(true);
-  };
-
-  const handleRemoveFromCart = (id) => {
-    setCartItems((currentItems) =>
-      currentItems.filter((item) => item.id !== id),
-    );
-  };
-
-  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
   return (
     <main className="app">
-      <Nav
-        cartCount={cartCount}
-        cartOpen={isCartOpen}
-        onToggleCart={() => setIsCartOpen((prev) => !prev)}
-        cartItems={cartItems}
-        onRemoveItem={handleRemoveFromCart}
-      />
+      <Nav />
       <div className="app__product-container">
         <Gallery />
-        <Description product={product} onAddToCart={handleAddToCart} />
+        <Description product={product} />
       </div>
     </main>
   );

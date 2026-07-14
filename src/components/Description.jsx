@@ -3,8 +3,10 @@ import "./Description.css";
 import plusIcon from "../assets/icon-plus.svg";
 import minusIcon from "../assets/icon-minus.svg";
 import cartIcon from "../assets/icon-cart.svg";
+import useCartStore from "../store/cartStore";
 
-function Description({ product, onAddToCart }) {
+function Description({ product }) {
+  const addToCart = useCartStore((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
 
   const discountedPrice =
@@ -21,7 +23,7 @@ function Description({ product, onAddToCart }) {
   };
 
   const handleAddToCart = () => {
-    onAddToCart(quantity);
+    addToCart(product, quantity);
   };
 
   return (

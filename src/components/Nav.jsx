@@ -5,11 +5,18 @@ import menuClose from "../assets/icon-close.svg";
 import logo from "../assets/logo.svg";
 import cart from "../assets/icon-cart.svg";
 import avatar from "../assets/image-avatar.png";
+import useCartStore from "./store/cartStore";
 import Cart from "./Cart.jsx";
 
-function Nav({ cartCount, cartOpen, onToggleCart, cartItems, onRemoveItem }) {
+function Nav() {
+  const isCartOpen = useCartStore((state) => state.isCartOpen);
+  const cartItems = useCartStore((state) => state.cartItems);
+  const toggleCart = useCartStore((state) => state.toggleCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <nav className="nav-filter" aria-label="Navigation menu">
@@ -54,7 +61,7 @@ function Nav({ cartCount, cartOpen, onToggleCart, cartItems, onRemoveItem }) {
             type="button"
             className="nav-filter__cart-button"
             aria-label="Toggle cart"
-            onClick={onToggleCart}
+            onClick={toggleCart}
           >
             <img
               className="nav-filter__action-icon"
@@ -65,7 +72,11 @@ function Nav({ cartCount, cartOpen, onToggleCart, cartItems, onRemoveItem }) {
               <span className="nav-filter__cart-count">{cartCount}</span>
             )}
           </button>
-          <Cart open={cartOpen} items={cartItems} onRemoveItem={onRemoveItem} />
+          <Cart
+            open={isCartOpen}
+            items={cartItems}
+            onRemoveItem={removeFromCart}
+          />
         </div>
 
         <img className="nav-filter__avatar" src={avatar} alt="Avatar" />
