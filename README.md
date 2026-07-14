@@ -48,34 +48,31 @@ Users should be able to:
 
 Design files are located in the [`/design`](./design/) directory:
 
-| File | Description |
-|---|---|
-| `desktop-design.jpg` | Main desktop layout |
-| `desktop-design-lightbox.jpg` | Lightbox modal on desktop |
-| `mobile-design.jpg` | Main mobile layout |
-| `mobile-menu.jpg` | Open mobile navigation |
-| `mobile-design-basket-empty.jpg` | Cart popover — empty state |
-| `mobile-design-basket-filled.jpg` | Cart popover — filled state |
-| `active-states-*.jpg` | Hover/active state references |
+| File                              | Description                   |
+| --------------------------------- | ----------------------------- |
+| `desktop-design.jpg`              | Main desktop layout           |
+| `desktop-design-lightbox.jpg`     | Lightbox modal on desktop     |
+| `mobile-design.jpg`               | Main mobile layout            |
+| `mobile-menu.jpg`                 | Open mobile navigation        |
+| `mobile-design-basket-empty.jpg`  | Cart popover — empty state    |
+| `mobile-design-basket-filled.jpg` | Cart popover — filled state   |
+| `active-states-*.jpg`             | Hover/active state references |
 
 ### Links
-
-- **Solution URL:** [Add your Frontend Mentor solution URL here]
-- **Live Site URL:** [Add your live deployment URL here]
 
 ---
 
 ## Tech Stack
 
-| Category | Technology |
-|---|---|
-| UI Library | [React 19](https://react.dev/) with hooks (`useState`, `useEffect`, `useRef`) |
-| State Management | [Zustand 5](https://zustand-demo.pmnd.rs/) — lightweight, single-store |
-| Build Tool | [Vite 8](https://vite.dev/) |
-| Styling | Vanilla CSS (~1,088 lines, component-scoped, BEM methodology) |
-| Linting | ESLint 10 with `eslint-plugin-react-hooks` and `eslint-plugin-react-refresh` |
-| Typography | [Kumbh Sans](https://fonts.google.com/specimen/Kumbh+Sans) (400, 700) |
-| Icons/Images | SVG icons and JPG product images (local assets) |
+| Category         | Technology                                                                    |
+| ---------------- | ----------------------------------------------------------------------------- |
+| UI Library       | [React 19](https://react.dev/) with hooks (`useState`, `useEffect`, `useRef`) |
+| State Management | [Zustand 5](https://zustand-demo.pmnd.rs/) — lightweight, single-store        |
+| Build Tool       | [Vite 8](https://vite.dev/)                                                   |
+| Styling          | Vanilla CSS (~1,088 lines, component-scoped, BEM methodology)                 |
+| Linting          | ESLint 10 with `eslint-plugin-react-hooks` and `eslint-plugin-react-refresh`  |
+| Typography       | [Kumbh Sans](https://fonts.google.com/specimen/Kumbh+Sans) (400, 700)         |
+| Icons/Images     | SVG icons and JPG product images (local assets)                               |
 
 No CSS frameworks, component libraries, or preprocessors — everything is hand-crafted.
 
@@ -123,26 +120,26 @@ Cart state is managed through a single Zustand store, accessed by three differen
 
 **Store shape:**
 
-| State | Type | Purpose |
-|---|---|---|
-| `cartItems` | `Array<{ id, title, originalPrice, discountPercent, quantity }>` | All items in the cart |
-| `isCartOpen` | `boolean` | Whether the cart popover is visible |
+| State        | Type                                                             | Purpose                             |
+| ------------ | ---------------------------------------------------------------- | ----------------------------------- |
+| `cartItems`  | `Array<{ id, title, originalPrice, discountPercent, quantity }>` | All items in the cart               |
+| `isCartOpen` | `boolean`                                                        | Whether the cart popover is visible |
 
 **Actions:**
 
-| Action | Behavior |
-|---|---|
+| Action                         | Behavior                                                                                                  |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
 | `addToCart(product, quantity)` | If the product already exists (matched by `id`), increments its quantity. Otherwise, appends a new entry. |
-| `removeFromCart(productId)` | Filters out the item with the matching `id`. |
-| `toggleCart()` | Flips `isCartOpen`. |
+| `removeFromCart(productId)`    | Filters out the item with the matching `id`.                                                              |
+| `toggleCart()`                 | Flips `isCartOpen`.                                                                                       |
 
 **Which components consume the store:**
 
-| Component | Reads | Writes |
-|---|---|---|
-| `Nav.jsx` | `cartItems` (for badge count) | `toggleCart` |
-| `Description.jsx` | — | `addToCart` |
-| `Cart.jsx` | `isCartOpen`, `cartItems` | `removeFromCart`, `toggleCart` |
+| Component         | Reads                         | Writes                         |
+| ----------------- | ----------------------------- | ------------------------------ |
+| `Nav.jsx`         | `cartItems` (for badge count) | `toggleCart`                   |
+| `Description.jsx` | —                             | `addToCart`                    |
+| `Cart.jsx`        | `isCartOpen`, `cartItems`     | `removeFromCart`, `toggleCart` |
 
 Component-specific UI state (mobile menu, gallery index, quantity selector) stays local with `useState` — a deliberate hybrid approach.
 
@@ -173,6 +170,7 @@ Component-specific UI state (mobile menu, gallery index, quantity selector) stay
 - Navigation wraps around (index 0 goes to last image, and vice versa)
 
 **State managed:**
+
 ```js
 const [currentImageIndex, setCurrentImageIndex] = useState(0);
 const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -211,13 +209,13 @@ Product data is defined as a plain object in [`App.jsx`](./src/App.jsx) and pass
 
 This project was built with accessibility as a first-class concern:
 
-| Feature | Implementation |
-|---|---|
-| Semantic HTML | `<nav>`, `<ul>`, `<li>`, `<main>`, `<h1>`, `<h3>`, `<button>` |
-| ARIA attributes | `aria-label`, `aria-expanded`, `aria-hidden`, `aria-current`, `role="dialog"` |
-| Keyboard navigable | All interactive elements are reachable and operable via keyboard |
-| Decorative images | Navigation arrows and icons use `alt=""` to be skipped by screen readers |
-| Focus management | Native `<button>` elements used throughout (not `<div>` click handlers) |
+| Feature            | Implementation                                                                |
+| ------------------ | ----------------------------------------------------------------------------- |
+| Semantic HTML      | `<nav>`, `<ul>`, `<li>`, `<main>`, `<h1>`, `<h3>`, `<button>`                 |
+| ARIA attributes    | `aria-label`, `aria-expanded`, `aria-hidden`, `aria-current`, `role="dialog"` |
+| Keyboard navigable | All interactive elements are reachable and operable via keyboard              |
+| Decorative images  | Navigation arrows and icons use `alt=""` to be skipped by screen readers      |
+| Focus management   | Native `<button>` elements used throughout (not `<div>` click handlers)       |
 
 ---
 
@@ -227,15 +225,15 @@ Taken from [`style-guide.md`](./style-guide.md):
 
 ### Colors
 
-| Role | Value |
-|---|---|
-| Primary Orange | `hsl(26, 100%, 55%)` |
-| Pale Orange | `hsl(25, 100%, 94%)` |
-| Very Dark Blue | `hsl(220, 13%, 13%)` |
-| Dark Grayish Blue | `hsl(219, 9%, 45%)` |
-| Grayish Blue | `hsl(220, 14%, 75%)` |
+| Role               | Value                |
+| ------------------ | -------------------- |
+| Primary Orange     | `hsl(26, 100%, 55%)` |
+| Pale Orange        | `hsl(25, 100%, 94%)` |
+| Very Dark Blue     | `hsl(220, 13%, 13%)` |
+| Dark Grayish Blue  | `hsl(219, 9%, 45%)`  |
+| Grayish Blue       | `hsl(220, 14%, 75%)` |
 | Light Grayish Blue | `hsl(223, 64%, 98%)` |
-| White | `hsl(0, 0%, 100%)` |
+| White              | `hsl(0, 0%, 100%)`   |
 
 ### Typography
 
@@ -245,12 +243,12 @@ Taken from [`style-guide.md`](./style-guide.md):
 
 ### Breakpoints
 
-| Breakpoint | Usage |
-|---|---|
-| `<640px` | Small mobile adjustments (smaller nav padding/logo) |
-| `<1023px` | Mobile menu slide-in, backdrop visible |
-| `>=768px` | Gallery thumbnails visible, description actions go horizontal |
-| `>=1024px` | Desktop layout: flex-row product container, inline nav links |
+| Breakpoint | Usage                                                         |
+| ---------- | ------------------------------------------------------------- |
+| `<640px`   | Small mobile adjustments (smaller nav padding/logo)           |
+| `<1023px`  | Mobile menu slide-in, backdrop visible                        |
+| `>=768px`  | Gallery thumbnails visible, description actions go horizontal |
+| `>=1024px` | Desktop layout: flex-row product container, inline nav links  |
 
 ---
 
@@ -279,12 +277,12 @@ The dev server starts at `http://localhost:5173` with Hot Module Replacement (HM
 
 ### Available Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start Vite development server |
-| `npm run build` | Build for production (outputs to `dist/`) |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint across the project |
+| Command           | Description                               |
+| ----------------- | ----------------------------------------- |
+| `npm run dev`     | Start Vite development server             |
+| `npm run build`   | Build for production (outputs to `dist/`) |
+| `npm run preview` | Preview the production build locally      |
+| `npm run lint`    | Run ESLint across the project             |
 
 ---
 
@@ -334,4 +332,4 @@ Areas to improve in future projects:
 
 ---
 
-*Built as part of the [Frontend Mentor](https://www.frontendmentor.io) challenge series.*
+_Built as part of the [Frontend Mentor](https://www.frontendmentor.io) challenge series._
