@@ -5,14 +5,13 @@ import menuClose from "../assets/icon-close.svg";
 import logo from "../assets/logo.svg";
 import cart from "../assets/icon-cart.svg";
 import avatar from "../assets/image-avatar.png";
-import useCartStore from "./store/cartStore";
+import useCartStore from "../store/cartStore";
 import Cart from "./Cart.jsx";
 
 function Nav() {
-  const isCartOpen = useCartStore((state) => state.isCartOpen);
   const cartItems = useCartStore((state) => state.cartItems);
   const toggleCart = useCartStore((state) => state.toggleCart);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
 
@@ -72,11 +71,7 @@ function Nav() {
               <span className="nav-filter__cart-count">{cartCount}</span>
             )}
           </button>
-          <Cart
-            open={isCartOpen}
-            items={cartItems}
-            onRemoveItem={removeFromCart}
-          />
+          <Cart />
         </div>
 
         <img className="nav-filter__avatar" src={avatar} alt="Avatar" />
